@@ -47,6 +47,7 @@ video{
 
 .main_controls_block{
   display: flex;
+  align-items: center;
 }
 
 .main_controls_button{
