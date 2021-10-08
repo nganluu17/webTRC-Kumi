@@ -18,8 +18,11 @@ app.get("/", (req, rsp) => {
   rsp.redirect(`/${uuidv4()}`);
 });
 
-app.get("/:room", (req, res) => {
-  res.render("room", { roomId: req.params.room });
+app.get("/:room/:name", (req, res) => {
+  res.render("room", { 
+    roomId: req.params.room,
+    name: req.params.name
+  });
 });
 
 io.on("connection", (socket) => {
