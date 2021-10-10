@@ -34,11 +34,13 @@ io.on("connection", (socket) => {
       io.to(roomId).emit("createMessage", message);
     });
 
+    socket.on('disconnected', () =>{
+      io.to(roomId).emit({
+        text: 'disconnected',
+      })  
+    });
   });
 
-  socket.on('disconnected', () =>{
-
-  });
 });
 
 server.listen(process.env.PORT || 3030);
