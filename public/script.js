@@ -98,7 +98,7 @@ let text = $('input');
         scrollToBottom();
     })
 
-    socket.on('disconnect', (userId) =>{
+    socket.on('user-disconnected', (userId) =>{
         $('ul').append(`<li> ${userId} has left the chat room </li>`)
     })
 
