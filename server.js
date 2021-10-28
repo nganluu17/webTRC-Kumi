@@ -5,7 +5,7 @@ const { v4: uuidv4 } = require("uuid");
 const io = require("socket.io")(server);
 // Peer
 
-const PORT = 5000
+const PORT = 5001
 
 const { ExpressPeerServer } = require("peer");
 const peerServer = ExpressPeerServer(server, {
@@ -45,7 +45,7 @@ io.on("connection", (socket) => {
 
 });
 
-port = process.env.PORT || 5000
+port = process.env.PORT || 5001
 
 server.listen(port, () => {
   console.log(`Server running on port ${port}`);
