@@ -98,6 +98,10 @@ let text = $('input');
         scrollToBottom();
     })
 
+    socket.on('disconnect', (userId) =>{
+        $('ul').append(`<li> ${userId} has left the chat room </li>`)
+    })
+
 const setPlayVideo = () => {
     const html = `
     <i class="stop fas fa-video-slash"></i>
