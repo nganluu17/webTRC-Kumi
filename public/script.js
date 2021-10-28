@@ -78,8 +78,6 @@ navigator.mediaDevices.getUserMedia({
         connectToNewUser(userId, stream);
     })
 
-    
-
 })
 
 peer.on('open', id => {

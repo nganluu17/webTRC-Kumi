@@ -5,6 +5,8 @@ const { v4: uuidv4 } = require("uuid");
 const io = require("socket.io")(server);
 // Peer
 
+const PORT = 5000
+
 const { ExpressPeerServer } = require("peer");
 const peerServer = ExpressPeerServer(server, {
   debug: true,
@@ -18,8 +20,11 @@ app.get("/", (req, rsp) => {
   rsp.redirect(`/${uuidv4()}`);
 });
 
-app.get("/:room", (req, res) => {
-  res.render("room", { roomId: req.params.room });
+app.get("/:room/:name", (req, res) => {
+  res.render("room", { 
+    roomId: req.params.room,
+    name: req.params.name
+  });
 });
 
 io.on("connection", (socket) => {
@@ -30,7 +35,18 @@ io.on("connection", (socket) => {
     socket.on("message", (message) => {
       io.to(roomId).emit("createMessage", message);
     });
+
+    socket.on('disconnected', () =>{
+      io.to(roomId).emit({
+        text: 'disconnected',
+      })  
+    });
   });
+
 });
 
-server.listen(process.env.PORT || 3030);
+port = process.env.PORT || 5000
+
+server.listen(port, () => {
+  console.log(`Server running on port ${port}`);
+});
